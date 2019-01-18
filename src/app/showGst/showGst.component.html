@@ -1,0 +1,29 @@
+<div style="width:50%;margin-left:25%;">
+    <h3>Result</h3>
+    <hr>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>CategoryName</th>
+                <th>Gst Rate</th>
+                <th>Amount</th>
+                <th>Gst Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{item.name}}</td>
+                <td>{{item.gst}}%</td>
+                <td>{{item.amount}}</td>
+                <td>{{totalGst}}
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+    <hr>
+</div>
+
+<button [routerLink]="['/home']" style="margin-left:25%; " type="button" class="btn btn-dark">HOME

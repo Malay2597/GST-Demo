@@ -1,0 +1,35 @@
+<form name="form" (ngSubmit)="f.form.valid?calculateGst(category,amount):''" #f="ngForm">
+    <div style="margin-left:25%;width:40%">
+        <h3>Calculate GST </h3>
+        <hr>
+        <div class="form-group">
+            <label for="formGroupExampleInput">Select Category</label>
+            <select name="s" [(ngModel)]="category" class="form-control" #s="ngModel" required>
+                <option name="select" [ngValue]="category" *ngFor="let category of productList">{{category.CATEGORYNAME}}</option>
+            </select>
+            <div *ngIf="f.submitted && s.invalid" class="alert alert-danger">
+                <div *ngIf="s.errors.required">select any one value</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="formGroupExampleInput2">Enter Amount</label>
+
+            <input min="1" name="Amount" type="number" [(ngModel)]="amount" class="form-control" #Amount="ngModel" Amount required pattern="^[1-9]\d*(\.\d+)?$">
+            <div *ngIf="f.submitted && Amount.invalid" class="alert alert-danger">
+                <div *ngIf="Amount.errors.required">Amount is required </div>
+                <div *ngIf="Amount.errors.pattern">enter positive number</div>
+
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-success">CALCULATE</button>
+        <hr>
+        <button [routerLink]="['/add']" style="float:right;margin-right:25px; " type="button" class="btn btn-danger">ADD
+
+        </button>
+    </div>
+</form>
+
+<div style="margin-top:5%;margin-left:25%" *ngIf="show"><span style="padding:20px;font-size:25px" class="label label-info">GST
+        Amount is {{total}}</span></div>

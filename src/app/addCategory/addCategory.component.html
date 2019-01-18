@@ -1,0 +1,35 @@
+<div style="width:50%" class="container">
+    <form name="form" (ngSubmit)="f.form.valid?onSubmit(f):''" #f="ngForm">
+
+        <h3>Add Category</h3>
+        <hr>
+        <div *ngIf="showError " class="alert alert-danger">{{showError}}</div>
+        <div *ngIf="showMessage " class="alert alert-success">{{showMessage}}</div>
+        <label>Category Name</label>
+        <div class="form-group">
+
+            <input type="text" placeholder="Enter Category Name" class="form-control" name="PName" [(ngModel)]="Form.name" #PName="ngModel"
+                PName required />
+            <div *ngIf="(PName.touched && PName.invalid)||(PName.invalid && f.submitted)" class="alert alert-danger">
+                <div *ngIf="PName.errors.required">Name is required</div>
+            </div>
+        </div>
+
+        <label>Gst Rate</label>
+        <div class="form-group">
+            <input type="number" min="1" placeholder="Enter GST Rate" class="form-control" [(ngModel)]="Form.GST" name='gst' #gst='ngModel'
+                gst required pattern="^(?!0+(?:\.0+)?$)\d?\d(?:\.\d\d?)?$" />
+
+            <div *ngIf="(gst.touched && gst.invalid)||(gst.invalid && f.submitted)" class="alert alert-danger">
+                <div *ngIf="gst.errors.pattern">GST RATE BETWEEN (1-100) </div>
+                <div *ngIf="gst.errors.required">Price is required</div>
+            </div>
+        </div>
+
+        <button class="btn btn-success" type="submit">ADD</button>
+        <hr>
+        <button style="float:right;margin-right:25px;" class="btn btn-info" type="button" [routerLink]="['/home']">HOME</button>
+
+
+    </form>
+</div>
